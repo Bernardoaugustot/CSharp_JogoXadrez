@@ -12,17 +12,19 @@ namespace ProjetoCSharpCursoXadres1
         {
             for(int l=0; l < tab.linhas; l++)
             {
+                Console.Write(8-l + " ");
                 for(int c=0; c<tab.colunas; c++)
                 {
+
                     if(tab.peca(l, c) == null)
                     {
                         Console.Write("- ");
                     }
-                    Console.Write(tab.peca(l,c)+ " ");
-                    
+                    Console.Write(tab.peca(l, c) + " ");
                 }
-                Console.WriteLine();
             }
+
+            Console.Write("  A B C D E F G H");
         }
     }
 }

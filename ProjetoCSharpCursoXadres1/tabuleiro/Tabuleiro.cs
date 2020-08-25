@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjetoCSharpCursoXadres1.tabuleiro;
+using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,12 +26,44 @@ namespace tabuleiro
             return pecas[l, c];
         }
 
+        public Peca peca(Posicao posicao)
+        {
+            return pecas[posicao.linha, posicao.coluna];
+        }
+
+        public bool existePeca(Posicao posicao)
+        {
+            validarPosicao(posicao);
+            return peca(posicao) != null;
+        }
+
         public void colocarPeca(Peca p, Posicao posicao)
         {
+            if (existePeca(posicao))
+            {
+                throw new TabuleiroExeception("Ja existe uma peça na posição alvo");
+            }
             pecas[posicao.linha, posicao.coluna] = p;
             p.posicao = posicao;
 
         }
 
+
+        public bool posicaoValida(Posicao posicao)
+        {
+            if (posicao.linha < 0 || posicao.coluna < 0
+                || posicao.linha >= linhas || posicao.coluna < colunas)
+            {
+                return false;
+            }
+            return true;
+        }
+        public void validarPosicao(Posicao posicao)
+        {
+            if (!posicaoValida(posicao))
+            {
+                throw new TabuleiroExeception("Posição fora do tabuleiro");
+            }
+        }
     }
 }
