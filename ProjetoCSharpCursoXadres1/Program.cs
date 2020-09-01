@@ -1,4 +1,5 @@
-﻿using ProjetoCSharpCursoXadres1.xadrez;
+﻿using ProjetoCSharpCursoXadres1.tabuleiro;
+using ProjetoCSharpCursoXadres1.xadrez;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +14,54 @@ namespace ProjetoCSharpCursoXadres1
     {
         static void Main(string[] args)
         {
+            try
+            {
+                PartidaXadrez partida = new PartidaXadrez();
 
-            PosicaoXadrez pos = new PosicaoXadrez('a', 1);
-            Console.WriteLine(pos);
-            Console.WriteLine(pos.ToPosicao());
-            /*
-            Tabuleiro tab = new Tabuleiro(8, 8
-            tab.colocarPeca(new Torre(tab, Cor.preta), new Posicao(0, 0));
-            tab.colocarPeca(new Rei(tab, Cor.preta), new Posicao(2, 4));
-            tab.colocarPeca(new Peao(tab, Cor.preta), new Posicao(2, 2));
-            tela.imprimirTabuleiro(tab);
-            */
+                while (!partida.Terminada)
+                {
+                    try
+                    {
+                        Console.Clear();
+                        tela.imprimirPartida(partida);
+
+                        Console.WriteLine();
+                        Console.Write("Digite a posição de Origem:(a1)");
+                        
+                            Posicao origem = tela.lerposicaoXadrez().ToPosicao();
+                        
+                        partida.validarPosicaoDeOrigem(origem);
+                        Console.Clear();
+                        Console.WriteLine("Turno " + partida.turno +" - peça selecionada.");
+                        Console.WriteLine("Aguardando Jogada:" + partida.jogadorAtual);
+
+                        bool[,] posicoesPossiveisX = partida.tab.peca(origem).movimentosPossiveis();
+                        tela.imprimirTabuleiro(partida.tab, posicoesPossiveisX); // tabuleiro marcado
+
+                        Console.Write("Digite a Destino:");
+                        Posicao destino = tela.lerposicaoXadrez().ToPosicao();
+                        partida.validarPosicaoDeDestino(origem, destino);
+                        partida.realizaJogada(origem, destino);
+
+                        Console.WriteLine(partida.turno + "Jogada N realizada");
+                    }
+                    
+                    catch (TabuleiroExeception e)
+                    {
+                        Console.WriteLine(e.Message + "Press Start To next");
+                        Console.ReadLine();
+                    }
+                }
+                
+            }
+            catch (TabuleiroExeception e)
+            {
+                Console.WriteLine("ERRO FORA DO WHILE");
+                Console.WriteLine(e.Message);
+                Console.WriteLine();
+            }
+
+
             Console.WriteLine("Teste bem sucedido");
             Console.ReadLine();
         }

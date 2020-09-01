@@ -41,18 +41,29 @@ namespace tabuleiro
         {
             if (existePeca(posicao))
             {
-                throw new TabuleiroExeception("Ja existe uma peça na posição alvo");
+                throw new TabuleiroExeception(p + ", " + posicao + ". Ja existe uma peça na posição alvo");
             }
             pecas[posicao.linha, posicao.coluna] = p;
             p.posicao = posicao;
 
         }
 
+        public Peca retirarPeca(Posicao posicao)
+        {
+            if (peca(posicao) == null)
+            {
+                return null;
+            }
+            Peca aux = peca(posicao);
+            aux.posicao = null;
+            pecas[posicao.linha, posicao.coluna] = null;
+            return aux;
+        }
 
         public bool posicaoValida(Posicao posicao)
         {
             if (posicao.linha < 0 || posicao.coluna < 0
-                || posicao.linha >= linhas || posicao.coluna < colunas)
+                || posicao.linha >= linhas || posicao.coluna >= colunas)
             {
                 return false;
             }
@@ -62,7 +73,7 @@ namespace tabuleiro
         {
             if (!posicaoValida(posicao))
             {
-                throw new TabuleiroExeception("Posição fora do tabuleiro");
+                throw new TabuleiroExeception(posicao + ". Posição fora do tabuleiro");
             }
         }
     }
