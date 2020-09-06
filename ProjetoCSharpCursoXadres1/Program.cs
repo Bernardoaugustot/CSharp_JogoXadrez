@@ -32,6 +32,9 @@ namespace ProjetoCSharpCursoXadres1
                         
                         partida.validarPosicaoDeOrigem(origem);
                         Console.Clear();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
                         Console.WriteLine("Turno " + partida.turno +" - peça selecionada.");
                         Console.WriteLine("Aguardando Jogada:" + partida.jogadorAtual);
 

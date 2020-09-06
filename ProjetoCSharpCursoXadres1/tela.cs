@@ -17,15 +17,19 @@ namespace ProjetoCSharpCursoXadres1
             Console.WriteLine("Aguardando Jogada:" + partida.jogadorAtual);
             imprimirPecasCapturadas(partida);
             tela.imprimirTabuleiro(partida.tab);
+            if (partida.xeque)
+            {
+                Console.WriteLine("XEQUE!!");
+            }
         }
 
         public static void imprimirPecasCapturadas(PartidaXadrez partida)
         {
             Console.WriteLine("Peças capturadas: ");
             Console.Write("Brancas:");
-            imprimirConjunto(partida.pecasCapturadas(Cor.branca));
+            imprimirConjunto(partida.pecasCapturadas(Cor.Branca));
             Console.Write("Pretas: ");
-            imprimirConjunto(partida.pecasCapturadas(Cor.preta));
+            imprimirConjunto(partida.pecasCapturadas(Cor.Preta));
             
         }
         public static void imprimirConjunto(HashSet<Peca> conjunto)
@@ -114,7 +118,7 @@ namespace ProjetoCSharpCursoXadres1
             {
                 try
                 {
-                    if (peca.cor == Cor.branca)
+                    if (peca.cor == Cor.Branca)
                     {
                         Console.Write(peca + " ");
                     }

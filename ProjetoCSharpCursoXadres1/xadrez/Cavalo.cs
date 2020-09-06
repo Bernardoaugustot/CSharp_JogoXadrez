@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 using tabuleiro;
 namespace ProjetoCSharpCursoXadres1.xadrez
 {
-    class Rei : Peca
+    class Cavalo : Peao
     {
-
-        public Rei(Tabuleiro tab, Cor cor) : base(tab, cor)
+        public Cavalo(Tabuleiro tab, Cor cor) : base(tab, cor)
         {
 
         }
-
-        
 
         public override bool[,] movimentosPossiveis()
         {
@@ -22,61 +19,62 @@ namespace ProjetoCSharpCursoXadres1.xadrez
 
             Posicao pos = new Posicao(0, 0);
 
-            //Acima
-            pos.definirValores(posicao.linha -1, posicao.coluna);
-            if(tab.posicaoValida(pos)&& podeMover(pos))
+            //Acima D
+            pos.definirValores(posicao.linha - 2, posicao.coluna +1);
+            if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-            //direita cima
-            pos.definirValores(posicao.linha - 1, posicao.coluna-1);
+            //Acima E
+            pos.definirValores(posicao.linha - 2, posicao.coluna - 1);
+            if (tab.posicaoValida(pos) && podeMover(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+            }
+            //baixo D
+            pos.definirValores(posicao.linha + 2, posicao.coluna + 1);
+            if (tab.posicaoValida(pos) && podeMover(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+            }
+            //baixo e
+            pos.definirValores(posicao.linha + 2, posicao.coluna - 1);
+            if (tab.posicaoValida(pos) && podeMover(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+            }
+            //DIREITA  B
+            pos.definirValores(posicao.linha + 1, posicao.coluna + 2);
+            if (tab.posicaoValida(pos) && podeMover(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+            }
+            //DIREITA  B
+            pos.definirValores(posicao.linha - 1, posicao.coluna + 2);
+            if (tab.posicaoValida(pos) && podeMover(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+            }
+            //DIREITA  B
+            pos.definirValores(posicao.linha + 1, posicao.coluna - 2);
+            if (tab.posicaoValida(pos) && podeMover(pos))
+            {
+                mat[pos.linha, pos.coluna] = true;
+            }
+            //DIREITA  B
+            pos.definirValores(posicao.linha - 1, posicao.coluna - 2);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
 
-            //direirta
-            pos.definirValores(posicao.linha , posicao.coluna-1);
-            if (tab.posicaoValida(pos) && podeMover(pos))
-            {
-                mat[pos.linha, pos.coluna] = true;
-            }
-            //Acima
-            pos.definirValores(posicao.linha + 1, posicao.coluna-1);
-            if (tab.posicaoValida(pos) && podeMover(pos))
-            {
-                mat[pos.linha, pos.coluna] = true;
-            }
-            //Acima
-            pos.definirValores(posicao.linha + 1, posicao.coluna);
-            if (tab.posicaoValida(pos) && podeMover(pos))
-            {
-                mat[pos.linha, pos.coluna] = true;
-            }
-            //Acima
-            pos.definirValores(posicao.linha + 1, posicao.coluna+1);
-            if (tab.posicaoValida(pos) && podeMover(pos))
-            {
-                mat[pos.linha, pos.coluna] = true;
-            }
-            //Acima
-            pos.definirValores(posicao.linha , posicao.coluna+1);
-            if (tab.posicaoValida(pos) && podeMover(pos))
-            {
-                mat[pos.linha, pos.coluna] = true;
-            }
-            //Acima
-            pos.definirValores(posicao.linha + 1, posicao.coluna+1);
-            if (tab.posicaoValida(pos) && podeMover(pos))
-            {
-                mat[pos.linha, pos.coluna] = true;
-            }
             return mat;
         }
 
+
         public override string ToString()
         {
-            return "R";
+            return "C";
         }
 
     }

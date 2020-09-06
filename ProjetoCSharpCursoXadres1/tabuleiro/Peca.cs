@@ -28,10 +28,20 @@ namespace tabuleiro
         {
             qteMovimentos++;
         }
+        public void descrementarMovimento()
+        {
+            qteMovimentos-= 1;
+        }
 
         public abstract bool[,] movimentosPossiveis();
-        
-        public bool podeMoverPara(Posicao posicao)
+
+        protected  bool podeMover(Posicao pos)
+        {
+            Peca p = tab.peca(pos);
+            return p == null || p.cor != cor;
+        }
+
+        public bool movimentoPosivel(Posicao posicao)
         {
             return movimentosPossiveis()[posicao.linha, posicao.coluna];
         }
